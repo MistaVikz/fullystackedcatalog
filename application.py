@@ -1,8 +1,7 @@
 from flask import Flask
 from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker
-# CHANGE TO NEW TABLES
-# from database_setup import Base, Restaurant, MenuItem
+from database_setup import Base, Category, CatalogItem
 
 app = Flask(__name__)
 
@@ -18,7 +17,7 @@ def catalog():
     return "Display the different categories and the latest items"
 
 @app.route('/catalog/<int:category_id>/items')
-def catEdit(category_id):
+def catView(category_id):
     return "Display a list of items in the selected category"
 
 @app.route('/catalog/new')
@@ -30,7 +29,7 @@ def catEdit(category_id):
     return "Edit a category"
 
 @app.route('/catalog/<int:category_id>/delete')
-def catDelete(cetegory_id):
+def catDelete(category_id):
     return "Delete a category"
 
 @app.route('/catalog/<int:category_id>/items/<int:item_id>/')

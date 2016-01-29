@@ -5,11 +5,10 @@ from sqlalchemy import create_engine
  
 Base = declarative_base()
 
-# Need to create proper tables
-class Restaurant(Base):
-    __tablename__ = 'restaurant'
+class Category(Base):
+    __tablename__ = 'category'
    
-    id = Column(Integer, primary_key=True)
+    category_id = Column(Integer, primary_key=True)
     name = Column(String(250), nullable=False)
 
     @property
@@ -17,20 +16,18 @@ class Restaurant(Base):
        """Return object data in easily serializeable format"""
        return {
            'name'         : self.name,
-           'id'           : self.id,
+           'id'           : self.category_id,
        }
  
-class MenuItem(Base):
-    __tablename__ = 'menu_item'
+class CatalogItem(Base):
+    __tablename__ = 'catalog_item'
 
 
     name =Column(String(80), nullable = False)
-    id = Column(Integer, primary_key = True)
+    item_id = Column(Integer, primary_key = True)
     description = Column(String(250))
-    price = Column(String(8))
-    course = Column(String(250))
-    restaurant_id = Column(Integer,ForeignKey('restaurant.id'))
-    restaurant = relationship(Restaurant)
+    cat_id = Column(Integer,ForeignKey('category.category_id'))
+    category = relationship(Category)
 
 
     @property
@@ -38,10 +35,8 @@ class MenuItem(Base):
        """Return object data in easily serializeable format"""
        return {
            'name'         : self.name,
-           'description'         : self.description,
-           'id'         : self.id,
-           'price'         : self.price,
-           'course'         : self.course,
+           'description'  : self.description,
+           'id'           : self.item_id,
        }
 
 
