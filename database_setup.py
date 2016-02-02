@@ -20,7 +20,7 @@ class Category(Base):
        }
  
 class CatalogItem(Base):
-    __tablename__ = 'catalog_item'
+    __tablename__ = 'catalog_items'
 
 
     name =Column(String(80), nullable = False)
