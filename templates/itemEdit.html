@@ -2,14 +2,20 @@
 
 <body>
 
-<h1>Edit Category Item</h1>
+<h1>Edit Item</h1>
 
-<form action="#" method='POST'>
+<form action="#" method = 'post'>
+
+
 	<p>Name:</p>
-		<input type = 'text' size=30 name='name' placeholder = '{{category_item.name}}'>
+		<input type ='text' size='30' name='name' placeholder = '{{item.name }}'>
 	<p>Description:</p>
-		<input type = 'text' size=30 name='description' placeholder = '{{category_item.description}}'>
-<input type = 'submit' value='Edit'>
+		<input type ='text' size='30' name='description' placeholder = '{{item.description}}'>
+	<p>Price:</p>
+		<input type ='text' size='30' name='price' placeholder = '{{item.price}}'>
+	
+<input type='submit' value='Edit'>
+
 
 <a href = '#'> Cancel </a>
 

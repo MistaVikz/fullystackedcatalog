@@ -22,11 +22,11 @@ class Category(Base):
 class CatalogItem(Base):
     __tablename__ = 'catalog_items'
 
-
-    name =Column(String(80), nullable = False)
     item_id = Column(Integer, primary_key = True)
+    name =Column(String(80), nullable = False)
     description = Column(String(250))
-    cat_id = Column(Integer,ForeignKey('category.category_id'))
+    price = Column(String(10))
+    category_id = Column(Integer,ForeignKey('category.category_id'))
     category = relationship(Category)
 
 
@@ -36,6 +36,7 @@ class CatalogItem(Base):
        return {
            'name'         : self.name,
            'description'  : self.description,
+           'price'        : self.price,
            'id'           : self.item_id,
        }
 

@@ -1,4 +1,4 @@
-from flask import Flask, render_template
+from flask import Flask, render_template, request, redirect, url_for, jsonify
 from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker
 from database_setup import Base, Category, CatalogItem
@@ -11,24 +11,24 @@ Base.metadata.bind = engine
 DBSession = sessionmaker(bind=engine)
 session = DBSession()
 
-# For debugging
-#Fake Categories
-category = {'name': 'Wet Food', 'id': '1'}
-categories = [{'name': 'Wet Food', 'id': '1'}, {'name':'Dry Food', 'id':'2'},{'name':'Toys', 'id':'3'}]
-
-#Fake Category Items
-category_items = [ {'name':'Almo Salmon', 'description':'Real chunks of salmon','id':'1'}, {'name':'Adult Cat Kibble','description':'For cats ages 1-10', 'id':'2'},{'name':'Lil Mouse', 'description':'Mouse with catnip inside','id':'3'},{'name':'Iced Tea', 'description':'with lemon','id':'4'},{'name':'Spinach Dip', 'description':'creamy dip with fresh spinach','id':'5'} ]
-category_item =  {'name':'Almo Salmon','description':'Real chunks of salmon'}
-
 
 @app.route('/')
 @app.route('/catalog')
 def catalog():
+    categories = session.query(Category).all()
     return render_template('catalog.html', categories=categories)
 
 @app.route('/catalog/new')
 def catNew():
     return render_template('catNew.html')
+
+@app.route('/catalog/<int:category_id>/')
+@app.route('/catalog/<int:category_id>/items')
+def catView(category_id):
+    category = session.query(Category).filter_by(category_id=category_id).one()
+    items = session.query(CatalogItem).filter_by(
+        category_id=category_id).all()
+    return render_template('catView.html', items=items, category=category)
 
 @app.route('/catalog/<int:category_id>/edit')
 def catEdit(category_id):
@@ -37,22 +37,33 @@ def catEdit(category_id):
 @app.route('/catalog/<int:category_id>/delete')
 def catDelete(category_id):
     return render_template('catDelete.html', category=category)
-
-@app.route('/catalog/<int:category_id>/items/<int:item_id>/')
-def itemView(category_id, item_id):
-    return "Display a specific item"
-
+   
 @app.route('/catalog/<int:category_id>/items/new')
 def itemNew(category_id):
     return render_template('itemNew.html')
 
-@app.route('/catalog/<int:category_id>/items/<int:item_id>/edit')
+@app.route('/catalog/<int:category_id>/items/<int:item_id>/edit',
+           methods=['GET', 'POST'])
 def itemEdit(category_id, item_id):
-    return render_template('itemEdit.html', category_item=category_item)
+#    return render_template('itemEdit.html', catalog_item=catalog_item)
+    editedItem = session.query(CatalogItem).filter_by(item_id=item_id).one()
+    if request.method == 'POST':
+        if request.form['name']:
+            editedItem.name = request.form['name']
+        if request.form['description']:
+            editedItem.description = request.form['name']
+        if request.form['price']:
+            editedItem.price = request.form['price']
+        session.add(editedItem)
+        session.commit()
+        return redirect(url_for('itemView', category_id=category_id))
+    else:
+        return render_template(
+            'itemEdit.html', category_id=category_id, item_id=item_id, item=editedItem)
 
 @app.route('/catalog/<int:category_id>/items/<int:item_id>/delete')
 def itemDelete(category_id, item_id):
-    return render_template('itemDelete.html', category_item=category_item)   
+    return render_template('itemDelete.html', catalog_item=catalog_item)   
 
 if __name__ == '__main__':
     app.debug = True
