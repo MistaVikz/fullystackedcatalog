@@ -2,18 +2,18 @@
 
 <body>
 
-<h1>Delete Category Item</h1>
+<h1>Delete Item</h1>
 
-<p>Name: {{category_item.name}}</p>
-<p>Description: {{category_item.description}}</p>
+<p>Name: {{item.name}}</p>
+<p>Description: {{item.description}}</p>
 
 <form action="#" method='POST'>
 
-<p> Are you sure you want to delete '{{category_item.name}}'?</p>
+<p> Are you sure you want to delete '{{item.name}}'?</p>
 <input type = 'submit' value='Delete'>
 
-<a href = '#'> Cancel </a>
-
+<a href = "{{url_for('catView', category_id=category_id)}}">Cancel</a>
+</form>
 </body>
 
 </html>

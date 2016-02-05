@@ -5,21 +5,9 @@
 <div class = 'pane'>
 <h1>The CAT-A-LOG</h1>
 
-<a href="{{url_for('catNew')}}" > <h3> Create a new category </h3> </a>
-
 {% for category in categories %}
 
-
-<p>
-<a href = "{{url_for('catView', category_id = category.category_id)}}"> {{category.name}}<a>
-<h5>
-<a href = "{{url_for('catEdit',category_id = category.category_id)}}">Edit</a>
-<a href = "{{url_for('catDelete',category_id = category.category_id)}}">Delete</a>
-</h5> 
-</p>
-
-
-
+<p><a href = "{{url_for('catView', category_id = category.category_id)}}"> {{category.name}}<a></p>
 
 {% endfor %}
 
