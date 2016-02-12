@@ -1,24 +1,45 @@
+{% extends "main.html" %}
+{% block content %}
+{% include "header.html" %}
+
 <html>
-
 <body>
+<div class = "row">
+	<div class "col-md-12">
+		{% with messages = get_flashed_messages() %}
+    		{% if messages %}      
+        	<ul>
+        	{% for message in messages %}
+            	<li> <strong> {{ message }} </strong> </li>
+        	{% endfor %}
+        	</ul>
+        	{% endif %}
+    		{% endwith %}
+   		<div class = 'pane'>
+			<h1>Edit Item</h1>
+			<p><a href="{{url_for('catalog')}}">
+				<span class="glyphicon glyphicon-home" aria-hidden="true"></span>Home</a>
+			<a href = "{{url_for('catView', category_id = category_id )}}">&nbsp;Back to Category</a></p>
+		</div>
+		<br>
+		<div class="pane">
+			<form action="#" method = 'post'>
+			<p>Name:</p>
+				<input type ='text' size='40' name='name' placeholder = '{{item.name }}'>
+			<p>Description:</p>
+				<input type ='text' size='80' name='description' placeholder = '{{item.description}}'>
+			<p>Price:</p>
+				<input type ='text' size='20' name='price' placeholder = '{{item.price}}'>
+			<br>
+			<br>
+			<input type='submit' value='Edit'>
 
-<h1>Edit Item</h1>
-
-<form action="#" method = 'post'>
-
-
-	<p>Name:</p>
-		<input type ='text' size='30' name='name' placeholder = '{{item.name }}'>
-	<p>Description:</p>
-		<input type ='text' size='30' name='description' placeholder = '{{item.description}}'>
-	<p>Price:</p>
-		<input type ='text' size='30' name='price' placeholder = '{{item.price}}'>
-	
-<input type='submit' value='Edit'>
-
-<a href = "{{url_for('catView', category_id=category_id)}}">Cancel</a>
-</form>
+			</form>
+		</div>
+	</div>
+</div>
 
 </body>
 
 </html>
+{% endblock %}

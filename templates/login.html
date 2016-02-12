@@ -1,0 +1,57 @@
+<head>
+   <script src="//ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js">
+  </script>
+  <script src="//apis.google.com/js/platform.js?onload=start"> </script>
+</head>
+
+<body>            
+  <div id="signInButton">
+    <span class="g-signin"
+      data-scope="openid email"
+      data-clientid="215860994037-g1d355t96toj81dbf1fivug26ub7sgee.apps.googleusercontent.com"
+      data-redirecturi="postmessage"
+      data-accesstype="offline"
+      data-cookiepolicy="single_host_origin"
+      data-callback="signInCallback"
+      data-approvalprompt="force">
+    </span>
+  </div>
+
+<div id="result"></div>
+
+<script>
+function signInCallback(authResult) {
+  if (authResult['code']) {
+    // Hide sign-up button after login
+    $('#signinButton').attr('style', 'display: none');
+    // Send one-time code to the server. Go to main catalog page upon sucess.
+    $.ajax({
+      type: 'POST',
+      url: '/gconnect?state={{STATE}}',
+      processData: false,
+      data: authResult['code'],
+      contentType: 'application/octet-stream; charset=utf-8',
+      success: function(result) {
+        // Handle or verify the server response if necessary.
+        if (result) {
+          $('#result').html('Login Successful!</br>'+ result + '</br>Redirecting...');
+          setTimeout(function() {
+            window.location.href = "/catalog";
+          }, 4000);
+        } else if (authResult['error']) {
+          console.log('There was an error: ' + authResult['error']);
+        } else {
+          $('#result').html('Failed to make a server-side call. Check your configuration and console.');
+        }
+      },
+      error: function(result) {
+        console.log('There was an error: ' + result);
+      }   
+    }); 
+  } 
+}
+</script>
+
+  </body>
+
+  </html>

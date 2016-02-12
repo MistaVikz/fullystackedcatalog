@@ -1,19 +1,38 @@
-
+{% extends "main.html" %}
+{% block content %}
+{% include "header.html" %}
 <html>
-
 <body>
-<div class = 'pane'>
-<h1>The CAT-A-LOG</h1>
+        
+<div class = "row">
+	<div class "col-md-12">
+		{% with messages = get_flashed_messages() %}
+    		{% if messages %}      
+        	<ul>
+        	{% for message in messages %}
+            	<li> <strong> {{ message }} </strong> </li>
+        	{% endfor %}
+        	</ul>
+        	{% endif %}
+    		{% endwith %}	
+	
+		<div class= "pane">
+			<p><h1>The CAT-A-LOG</h1>
+			<a href="{{url_for('catalog')}}">
+				<span class="glyphicon glyphicon-home" aria-hidden="true"></span>Home </a></p>
+		</div>
+		<br>
+		<div class = "pane">
+      		{% for category in categories %}
+			<h4>
+				<p><a href = "{{url_for('catView', category_id = category.category_id)}}"> {{category.name}}<a></p>
+			</h4>
+			{% endfor %}
+		</div>
 
-{% for category in categories %}
-
-<p><a href = "{{url_for('catView', category_id = category.category_id)}}"> {{category.name}}<a></p>
-
-{% endfor %}
-
+	</div>
 </div>
-
-
 </body>
 
 </html>
+{% endblock %}

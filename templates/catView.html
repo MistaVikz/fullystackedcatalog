@@ -1,46 +1,52 @@
+{% extends "main.html" %}
+{% block content %}
+{% include "header.html" %}
+
 <html>
-	
-<head>
-</head>
-	<body>
-		<div class = 'pane'>
-		<h1>{{ category.name }}</h1>
-		
+
+<body>
+<div class="row">
+	<div class="col-md-12">
 		{% with messages = get_flashed_messages() %}
-      		{% if messages %}
+      	{% if messages %}
           
-        		<ul>
-        		{% for message in messages %}
-            		<li> <strong> {{ message }} </strong> </li>
-        		{% endfor %}
-        		</ul>
-        	{% endif %}
+        <ul>
+        {% for message in messages %}
+            <li> <strong> {{ message }} </strong> </li>
+        {% endfor %}
+        </ul>
+        {% endif %}
     	{% endwith %}
 
-    	{% if items !=[] %}
-
-			<a href = "{{url_for('itemNew', category_id = category.category_id )}}">Create New Item</a>
-			</br></br>
-
-			{% for i in items %}
-				<p>{{i.name}}</p>
-				<p>{{i.description}}</p>
-				<p>{{i.price}}</p>
+		<div class="pane">
+			<h1>{{ category.name }}</h1>
+			<p><a href="{{url_for('catalog')}}">
+				<span class="glyphicon glyphicon-home" aria-hidden="true"></span>Home</a>
+			<a href = "{{url_for('itemNew', category_id = category.category_id )}}">&nbsp;Create New Item</a></p>
+		</div>
+		<br>
+		<div class="pane">
+    		{% if items !=[] %}
+				{% for i in items %}
+					<p>{{i.name}}</p>
+					<p>{{i.description}}</p>
+					<p>{{i.price}}</p>
 	
-				<a href='{{url_for('itemEdit', category_id = category.category_id, item_id=i.item_id ) }}' >Edit</a>
-				</br>
-				<a href='{{url_for('itemDelete', category_id = category.category_id, item_id=i.item_id ) }}' >Delete</a>
-				</br>
-				</br>
-			{% endfor %}
+					<a href='{{url_for('itemEdit', category_id = category.category_id, item_id=i.item_id ) }}' >Edit</a>
+					<a href='{{url_for('itemDelete', category_id = category.category_id, item_id=i.item_id ) }}' >Delete</a>
+					</br>
+					</br>
+				{% endfor %}
 
-		{% else %}
-		<p> There are no items in the category. <p>
-		<a href = "{{url_for('itemNew', category_id = category.category_id )}}">Create New Item</a>
-		{% endif %}
-
-		<a href = "{{url_for('catalog')}}">Back to the CAT-A-LOG</a>
+				{% else %}
+				<p> There are no items in the category. <p>
+				<a href = "{{url_for('itemNew', category_id = category.category_id )}}">Create New Item</a>
+			{% endif %}
+		</div>
+	</div>
 </div>
-	</body>
+		
+</body>
 
 </html>
+{% endblock %}

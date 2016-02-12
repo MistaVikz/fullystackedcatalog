@@ -1,0 +1,24 @@
+body            { font-family: sans-serif; background-color: white;)}
+ h1, h2, h3, h4       { color: black; }
+h1, h2          { font-family: 'Georgia', serif; margin: 0; }
+h1              { border-bottom: 2px solid #eee; }
+h2              { font-size: 1.2em; }
+
+p               { color: black;}
+
+
+a {text-decoration: none; color:black; font-size: .75em;}
+
+.pane {border: 1px solid;
+    border-radius: 5px; 
+    padding: 10px; 
+    border-color: black; }
+
+.header {
+	text-align: right;
+}
+
+.flash          { background: #cee5F5; }
+
+
+
