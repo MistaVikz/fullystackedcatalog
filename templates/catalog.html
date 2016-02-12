@@ -25,7 +25,9 @@
 		<div class = "pane">
       		{% for category in categories %}
 			<h4>
-				<p><a href = "{{url_for('catView', category_id = category.category_id)}}"> {{category.name}}<a></p>
+				<p>
+				<a href = "{{url_for('catView', category_id = category.category_id)}}"> {{category.name}}<a>
+				</p>
 			</h4>
 			{% endfor %}
 		</div>
