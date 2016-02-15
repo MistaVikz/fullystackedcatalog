@@ -49,3 +49,8 @@ Functionality: (in application.py)
 		Create, Edit or Delete items. Also ensures that users can only edit and delete items 
 		that they have created.
 
+References:
+	1. 	Udacity Full Stack Foundations repository: lotsofcats.py was adapted from lotsofmenus.py
+		to fill the CAT-A-LOG database.
+	2.	Udacity Authentication & Authorization repository: Used gconnect and gdisconnect from
+		project.py as a reference on how to handle login/logout errors.
