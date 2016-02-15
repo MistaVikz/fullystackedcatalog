@@ -87,7 +87,7 @@ def gconnect():
     h = httplib2.Http()
     result = json.loads(h.request(url, 'GET')[1])
 
-    # Abort if there's an error
+    # Abort if there is an error
     if result.get('error') is not None:
         response = make_response(json.dumps(result.get('error')), 500)
         response.headers['Content-Type'] = 'application/json'
@@ -129,7 +129,7 @@ def gconnect():
     return "Welcome."
 
 
-# Revoke token / reset login_session for Disconnect
+# Revoke token / reset login_session and disconnect.
 @app.route("/gdisconnect")
 def gdisconnect():
     # Only disconnect a connected user.
@@ -155,7 +155,7 @@ def gdisconnect():
         flash("You have disconnected.")
         return redirect(url_for('catalog'))
     else:
-        # For whatever reason, the given token was invalid.
+        # The given token was invalid.
         response = make_response(
             json.dumps('Failed to revoke token for given user.', 400))
         response.headers['Content-Type'] = 'application/json'
