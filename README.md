@@ -1,6 +1,6 @@
 The CAT-A-LOG
 
-A web application that allows the user to create, read, update and delete 
+	A web application that allows the user to create, read, update and delete 
 cat-related items with information stored in a database.
 
 Included Files:
@@ -9,7 +9,7 @@ Included Files:
 				CRUD functionality, routing, API endpoints, and database calls for the 
 				CAT-A-LOG.
 		ii.		client_secrets.json: Required for Google log-in.
-		iii.	database_setup.py: Database tables and definitions for serialized data.
+		iii.		database_setup.py: Database tables and definitions for serialized data.
 		iv.		lotsofcats.py: Populates the database with one dummy user, categories, 
 				and items that are associated with that user.
 	- In /static
@@ -19,12 +19,12 @@ Included Files:
 	- In /templates
 		i.		catalog.html: The home page of the CAT-A-LOG.	
 		ii.		catview.html: Displays the items in a specific category.
-		iii.	header.html: Contains sign in/sign out links.
+		iii.		header.html: Contains sign in/sign out links.
 		iv.		itemDelete.html: Confirmation page for deleting an item.
 		v.		itemEditm.html: Forms for editing an item.
 		vi.		itemNew.html: Forms for creating a new item.
-		vii.	login.html: Allows the user to sign in using Google.
-		viii.	main.html: Contains required header information and CSS/Bootstrap links.
+		vii.		login.html: Allows the user to sign in using Google.
+		viii.		main.html: Contains required header information and CSS/Bootstrap links.
 
 Instructions:
 	1.	From the /catalog directory in the vagrant secure shell, type 'python 
