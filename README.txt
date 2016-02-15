@@ -39,12 +39,13 @@ Functionality: (in application.py)
 	1. 	allCatsJSON(), oneCatJSON(), oneItemJSON():
 		These functions return JSON serialized data from the database.
 	2. 	showlogin(), gconnect(), gdisconnect():
-		Provides routing the log in page and functionality for sign-in/sign-out via Google. Contains 
-		error handling for the login/logout processes.
+		Provides routing the log in page and functionality for sign-in/sign-out via Google. 
+		Contains error handling for the login/logout processes.
 	3. 	createUser(), getUserInfo(), getUserId():
-		Uses the login session to create a new entry in the User table. Return user information for a 
-		specific user.
+		Uses the login session to create a new entry in the User table. Return user information 
+		for a specific user.
 	4. 	catalog(), catView(), itemNew(), itemEdit(), itemDelete():
-		Provides routing to all pages in the CAT-A-LOG. Ensures that only logged in users can Create, 
-		Edit or Delete items. Also ensures that users can only edit and delete items that they have created.
+		Provides routing to all pages in the CAT-A-LOG. Ensures that only logged in users can 
+		Create, Edit or Delete items. Also ensures that users can only edit and delete items 
+		that they have created.
 
