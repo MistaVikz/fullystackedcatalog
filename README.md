@@ -1,10 +1,10 @@
 The CAT-A-LOG
 
-	A web application that allows the user to create, read, update and delete 
+A web application that allows the user to create, read, update and delete 
 cat-related items with information stored in a database.
 
 Included Files:
-	- In /
+	- /
 		i. 		application.py:	Contains pythons functions that control authentication,
 				CRUD functionality, routing, API endpoints, and database calls for the 
 				CAT-A-LOG.
@@ -12,11 +12,11 @@ Included Files:
 		iii.		database_setup.py: Database tables and definitions for serialized data.
 		iv.		lotsofcats.py: Populates the database with one dummy user, categories, 
 				and items that are associated with that user.
-	- In /static
+	- /static
 		i.		catheader.png, catitem.png, catmenu.png: Images used by the CAT-A-LOG.
 		ii.		styles.css:	CSS and Bootstap formating for the CAT-A-LOG HTML files.
 
-	- In /templates
+	- /templates
 		i.		catalog.html: The home page of the CAT-A-LOG.	
 		ii.		catview.html: Displays the items in a specific category.
 		iii.		header.html: Contains sign in/sign out links.
